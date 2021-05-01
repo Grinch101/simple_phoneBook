@@ -8,7 +8,6 @@ class User():
         pass
 
     def add(self, client_name, email, password):
-
         return query('user/register',
                      vals=(client_name, email, password))
 

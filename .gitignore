@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+virtualenv/
 # C extensions
 *.so
 
@@ -130,3 +130,5 @@ dmypy.json
 crm.code-workspace
 procedure.bat
 .vscode/settings.json
+
+.vscode

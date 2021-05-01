@@ -8,7 +8,13 @@ import arrow
 import json
 
 ##### Create Connection pool ######
-def conn_pool(minconn, maxconn, /, host='localhost', database='phonebook', user='postgres', password=1):
+
+
+def conn_pool(minconn, maxconn, /,
+              host='localhost',
+              database='phonebook',
+              user='postgres',
+              password=1):
 
     return ThreadedConnectionPool(minconn,
                                   maxconn,
@@ -21,7 +27,7 @@ def conn_pool(minconn, maxconn, /, host='localhost', database='phonebook', user=
 ############ query func  ##########
 def query(query, vals=""):
 
-    query = "sql/" + query + ".sql"
+    query = "c:/Users/MrGrinch/Desktop/tests/simple_phoneBook/sql/" + query + ".sql"
     path = Path(query)
 
     with open(path, 'r') as f:
@@ -38,7 +44,7 @@ def conv_datetime(date, time):
     date = str(date)
     time = str(time)
 
-    arrow_time= arrow.get(f'{date} {time}', 'YYYY-MM-DD HH:mm')
+    arrow_time = arrow.get(f'{date} {time}', 'YYYY-MM-DD HH:mm')
     return arrow_time.format('h:m A - dddd MMM Do, YYYY')
 
 
@@ -60,14 +66,12 @@ def fetcher(cur):
     return []
 
 
-######### create an output dictionary containing
+# create an output dictionary containing
 #  all information to return to the client #########
 
-def json_output(message = None, data = None, error = None, http_code = 200 ):
-    
-    return make_response(json.dumps({'info':message,
-                    'data': data,
-                    'error': error                    
-                    }), http_code)
+def json_output(message=None, data=None, error=None, http_code=200):
 
-
+    return make_response(json.dumps({'info': message,
+                                     'data': data,
+                                     'error': error
+                                     }), http_code)

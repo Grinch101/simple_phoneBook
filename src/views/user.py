@@ -30,10 +30,15 @@ def login():
         )
         return json_output(message='Logged in, token generated', data=token)
     else:
-        return json_output(
-            error='Wrong Email or Password! please retry!',
-            http_code=400
+        if users_handler.get_by_email(email):
+            return json_output(
+                error='Wrong Email or Password! please retry!',
+                http_code=400
             )
+        else:
+            return json_output(error='email not found, please login',
+                               http_code=404
+                               )
 
 
 @user.route('/signup', methods=["POST"])
